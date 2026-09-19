@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/controle-cartão-ipda-rio-formoso/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
