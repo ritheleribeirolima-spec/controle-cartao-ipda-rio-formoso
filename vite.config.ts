@@ -4,12 +4,17 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  // If building on GitHub Actions for GitHub Pages, use the repository name base,
+  // otherwise use './' so it works seamlessly on Google AI Studio, Cloud Run, and local environments.
+  const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
+  const base = isGitHubActions ? '/controle-cartão-ipda-rio-formoso/' : './';
+
   return {
-    base: '/controle-cartão-ipda-rio-formoso/',
+    base,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve('.'),
       },
     },
     server: {
